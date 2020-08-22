@@ -28,6 +28,7 @@ export function setUser(token, user) {
 // Login a user using credentials
 export function login(userCredentials, isLoading = true) {
   return dispatch => {
+    //this is sending the action object to the reducer to begin the login process
     dispatch({
       type: LOGIN_REQUEST,
       isLoading

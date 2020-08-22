@@ -39,34 +39,39 @@ class Login extends Component {
   }
 
   onChange = (event) => {
+    //this is creating a mutatable version of the user object.
     let user = this.state.user
+    //This says that whatever the input is named will be the property that is changed in state.
     user[event.target.name] = event.target.value
-
+    //this setState function is setting our mutated version of user as the user in state.
     this.setState({
       user
     })
   }
 
   onSubmit = (event) => {
+    //prevent default stops the page from refreshing or components rerendering.
     event.preventDefault()
-
+    //these messages are all stores in the commmon/api/actions file
     this.props.messageShow('Logging in, please wait...')
-
+    //this imported login function is a fetch call ----
     this.props.login(this.state.user)
       .then(response => {
         if (this.props.user.error && this.props.user.error.length > 0) {
+          //if the user object has an error property show that error message
           this.props.messageShow(this.props.user.error)
-
+          //This makes the error message disappear after 
           window.setTimeout(() => {
             this.props.messageHide()
           }, 5000)
         } else {
+          //if there is no error don't show a message
           this.props.messageHide()
         }
       })
       .catch(error => {
         this.props.messageShow(this.props.user.error)
-
+        //show whatever error the user object has a an error property 
         window.setTimeout(() => {
           this.props.messageHide()
         }, 5000)
@@ -79,11 +84,14 @@ class Login extends Component {
     return (
       <Grid gutter={true} alignCenter={true} style={{ padding: '2em' }}>
         {/* SEO */}
+        {/* Helmet is a React component and manages changes to the document head. Takes in HTML tags and
+        puts out plain HTML tags.  */}
         <Helmet>
           <title>Login to your account - Crate</title>
         </Helmet>
 
         {/* Left Content - Image Collage */}
+        {/* Grid and GridCell are imported React components being used to style the page. */}
         <GridCell>
           <Grid gutter={true} alignCenter={true}>
             <GridCell justifyCenter={true}>
@@ -112,6 +120,8 @@ class Login extends Component {
           <H3 font="secondary" style={{ marginBottom: '1em' }}>Login to your account</H3>
 
           {/* Login Form */}
+          {/* We can probably use this to set our users new information, or
+          as a template for implementing new functionality in the User component */}
           <form onSubmit={this.onSubmit}>
             <div style={{ width: '25em', margin: '0 auto' }}>
               {/* Email */}
@@ -161,6 +171,7 @@ class Login extends Component {
 }
 
 // Component Properties
+// Makes sure that all of properties are the correct data types
 Login.propTypes = {
   user: PropTypes.object.isRequired,
   login: PropTypes.func.isRequired,
@@ -169,10 +180,13 @@ Login.propTypes = {
 }
 
 // Component State
+//This is where the global store is being used to set state for this component.
+//This is also where our updated user object is being set in the global store.
 function loginState(state) {
   return {
     user: state.user
   }
 }
 
+//This is connecting the Login component to the global store.
 export default connect(loginState, { login, messageShow, messageHide })(withRouter(Login))
