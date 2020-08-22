@@ -1,5 +1,6 @@
 // App Imports
 import { isEmpty } from '../../../setup/helpers'
+//These are our 
 import { SET_USER, LOGIN_REQUEST, LOGIN_RESPONSE, LOGOUT } from './actions'
 
 // Initial State
