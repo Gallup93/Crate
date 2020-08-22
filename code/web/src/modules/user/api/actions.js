@@ -33,7 +33,7 @@ export function login(userCredentials, isLoading = true) {
       type: LOGIN_REQUEST,
       isLoading
     })
-
+    //routeApi is the localhost:8000 backend server//
     return axios.post(routeApi, query({
       operation: 'userLogin',
       variables: userCredentials,
@@ -47,9 +47,9 @@ export function login(userCredentials, isLoading = true) {
         } else if (response.data.data.userLogin.token !== '') {
           const token = response.data.data.userLogin.token
           const user = response.data.data.userLogin.user
-
+//This is sending the result of the setUser function to the reducer
           dispatch(setUser(token, user))
-
+//This is calling the below function and setting user to localStorage
           loginSetUserLocalStorageAndCookie(token, user)
         }
 
@@ -68,18 +68,24 @@ export function login(userCredentials, isLoading = true) {
 }
 
 // Set user token and info in localStorage and cookie
+//When we return or reload the page, the browser will look in localStorage to see if the user is logged in.
+//If they are, they will use the user object to tell which user is logged in and load that user.
 export function loginSetUserLocalStorageAndCookie(token, user) {
   // Update token
   window.localStorage.setItem('token', token)
   window.localStorage.setItem('user', JSON.stringify(user))
 
   // Set cookie for SSR
+  //This appears to be a function imported from a library which handles cookies.
   cookie.set('auth', { token, user }, { path: '/' })
 }
 
 // Register a user
 export function register(userDetails) {
   return dispatch => {
+    //This is setting the userDetails variable with the values for the 'id', 'name', and 'email' fields.
+    //This is a possible place for 'bio', 'image' or any other new values to be added.
+    //We may need to make a new operation called 'userUpdate' or something along those lines.
     return axios.post(routeApi, mutation({
       operation: 'userSignup',
       variables: userDetails,
@@ -92,7 +98,7 @@ export function register(userDetails) {
 export function logout() {
   return dispatch => {
     logoutUnsetUserLocalStorageAndCookie()
-
+//calls the below function and then fires an action object with the type 'LOGOUT' to the reducer.
     dispatch({
       type: LOGOUT
     })
@@ -110,6 +116,7 @@ export function logoutUnsetUserLocalStorageAndCookie() {
 }
 
 // Get user gender
+// This is probably a good place to start looking at options for more gender inclusivity.
 export function getGenders() {
   return dispatch => {
     return axios.post(routeApi, query({

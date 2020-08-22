@@ -14,7 +14,8 @@ export const userInitialState = {
 // State
 //state is defined as the above object. The action object is also passed in.
 export default (state = userInitialState, action) => {
-//The switch takes in the action type to determine the case.
+//The switch takes in the action type to determine which of the following reducers to change.
+//All of the reducers will fire at once.
   switch (action.type) {
 // This sets the initial state and then if 
 // the action.user object isn't empty it sets isAuthenticated property to true.
