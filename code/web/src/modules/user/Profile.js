@@ -29,17 +29,21 @@ const Profile = (props) => (
         <H3 font="secondary">My profile</H3>
       </GridCell>
     </Grid>
-
+    {/* The Grid component below is where our user's bio, address, and image will be contained */}
+    {/* This is also where will will need to put out 'edit' buttons and connect them with functions 
+    that update that part of the user object in state*/}
     <Grid>
       <GridCell style={{ padding: '2em', textAlign: 'center' }}>
         <H4 style={{ marginBottom: '0.5em' }}>{props.user.details.name}</H4>
-
+        {/* <img style={blahblahblah}/>{props.user.details.image}</> */}
         <p style={{ color: grey2, marginBottom: '2em' }}>{props.user.details.email}</p>
-
+        {/* <p style={blahblahblah}/>{props.user.details.bio}</p> */}
+        {/* <p style={blahblahblah}/>{props.user.details.address}</p> */}
         <Link to={userRoutes.subscriptions.path}>
+        {/* userRoutes contains the information for the browser to relate the url to what is rendered on the page */}
+        {/* if we want to direct the user to any part of the website, the Link above is a good template */}
           <Button theme="primary">Subscriptions</Button>
         </Link>
-
         <Button theme="secondary" onClick={props.logout} style={{ marginLeft: '1em' }}>Logout</Button>
       </GridCell>
     </Grid>
@@ -53,10 +57,12 @@ Profile.propTypes = {
 }
 
 // Component State
+// This is basically dispatchStateToProps, which is what is used to connect this component to the global store.
 function profileState(state) {
   return {
     user: state.user
   }
 }
 
+// This is connecting the Profile component to props and also the logout function that was imported from actions?
 export default connect(profileState, { logout })(Profile)
