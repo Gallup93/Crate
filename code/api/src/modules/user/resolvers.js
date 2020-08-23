@@ -8,6 +8,9 @@ import params from '../../config/params'
 import models from '../../setup/models'
 
 // Create
+// Add new attributes here for user profile page improvemnts (see issue #35)
+// [image_link, description, shipping_address,
+// (something to track availability date(s?) for receiving orders)]
 export async function create(parentValue, { name, email, password }) {
   // Users exists with same email check
   const user = await models.User.findOne({ where: { email } })
@@ -26,6 +29,10 @@ export async function create(parentValue, { name, email, password }) {
     throw new Error(`The email ${ email } is already registered. Please try to login.`)
   }
 }
+
+
+// Add 'export async function update' here (see issue #35)
+
 
 export async function login(parentValue, { email, password }) {
   const user = await models.User.findOne({ where: { email } })
