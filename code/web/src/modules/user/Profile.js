@@ -15,6 +15,11 @@ import { grey, grey2 } from '../../ui/common/colors'
 import userRoutes from '../../setup/routes/user'
 import { logout } from './api/actions'
 
+//We will most likely need to add some sort of functionality to this component
+//that operates in a similar way to the Login component's form.
+//We may also consider adding a new component called UserData or something
+//that can be updated with new user data. 
+
 // Component
 const Profile = (props) => (
   <div>

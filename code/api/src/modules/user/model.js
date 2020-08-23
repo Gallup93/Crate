@@ -1,6 +1,7 @@
 'use strict'
 
 // User
+// Add new attributes 
 module.exports = function(sequelize, DataTypes) {
   let User = sequelize.define('users', {
     name: {

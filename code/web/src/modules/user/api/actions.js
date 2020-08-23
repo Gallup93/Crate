@@ -21,7 +21,7 @@ export function setUser(token, user) {
   } else {
     delete axios.defaults.headers.common['Authorization'];
   }
-
+  //this is returning and action object
   return { type: SET_USER, user }
 }
 
@@ -59,6 +59,7 @@ export function login(userCredentials, isLoading = true) {
         })
       })
       .catch(error => {
+//this is returning and action object
         dispatch({
           type: LOGIN_RESPONSE,
           error: 'Please try again'
@@ -85,7 +86,6 @@ export function register(userDetails) {
   return dispatch => {
     //This is setting the userDetails variable with the values for the 'id', 'name', and 'email' fields.
     //This is a possible place for 'bio', 'image' or any other new values to be added.
-    //We may need to make a new operation called 'userUpdate' or something along those lines.
     return axios.post(routeApi, mutation({
       operation: 'userSignup',
       variables: userDetails,
@@ -93,6 +93,7 @@ export function register(userDetails) {
     }))
   }
 }
+//We need to make a new operation called 'userUpdate' or something along those lines that overwrites the user data with all of the date, and the thing being changed.
 
 // Log out user and remove token from localStorage
 export function logout() {
