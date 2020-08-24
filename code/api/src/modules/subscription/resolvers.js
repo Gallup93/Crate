@@ -14,6 +14,7 @@ export async function get(parentValue, { id }) {
 
 // Get subscription by user
 export async function getByUser(parentValue, {}, { auth }) {
+  // makes a getByUser function available for use 
   if(auth.user && auth.user.id > 0) {
     return await models.Subscription.findAll({
       where: {

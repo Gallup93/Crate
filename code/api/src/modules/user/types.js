@@ -1,11 +1,12 @@
 // Imports
+// essentially the schema
 import { GraphQLObjectType, GraphQLString, GraphQLInt } from 'graphql'
 
 // User type
 const UserType = new GraphQLObjectType({
   name: 'user',
   description: 'User type',
-
+  //user model
   fields: () => ({
     id: { type: GraphQLInt },
     name: { type: GraphQLString },
@@ -40,3 +41,4 @@ const UserGenderType = new GraphQLObjectType({
 })
 
 export { UserType, UserLoginType, UserGenderType }
+//makes the defined user types available to use in resolvers & mutations

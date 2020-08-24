@@ -1,3 +1,5 @@
+// resolvers are used for fetching data from the API, they are nethods that
+// we define. they do not alter data, just say how to retrieve it
 // Imports
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
@@ -9,34 +11,37 @@ import models from '../../setup/models'
 
 // Create
 export async function create(parentValue, { name, email, password }) {
+  // root resolver
   // Users exists with same email check
   const user = await models.User.findOne({ where: { email } })
-
+  //looks for user by entered email
   if (!user) {
     // User does not exists
     const passwordHashed = await bcrypt.hash(password, serverConfig.saltRounds)
-
+    //create password with password input
     return await models.User.create({
       name,
       email,
       password: passwordHashed
     })
+    //creates a user with name, email and password input
   } else {
     // User exists
     throw new Error(`The email ${ email } is already registered. Please try to login.`)
+
   }
 }
 
 export async function login(parentValue, { email, password }) {
   const user = await models.User.findOne({ where: { email } })
-
+  //find user by email
   if (!user) {
     // User does not exists
     throw new Error(`We do not have any user registered with ${ email } email address. Please signup.`)
   } else {
     const userDetails = user.get()
-
     // User exists
+    // if user does exist decrypt entered password
     const passwordMatch = await bcrypt.compare(password, userDetails.password)
 
     if (!passwordMatch) {
@@ -49,6 +54,7 @@ export async function login(parentValue, { email, password }) {
         email: userDetails.email,
         role: userDetails.role
       }
+      // sets user details to current user
 
       return {
         user: userDetails,
@@ -60,6 +66,7 @@ export async function login(parentValue, { email, password }) {
 
 // Get by ID
 export async function getById(parentValue, { id }) {
+  //getByID is a fetching method, API method. fetches data
   return await models.User.findOne({ where: { id } })
 }
 
@@ -71,9 +78,11 @@ export async function getAll() {
 // Delete
 export async function remove(parentValue, { id }) {
   return await models.User.destroy({ where: { id } })
+  // deletes user by id
 }
 
 // User genders
 export async function getGenders() {
   return Object.values(params.user.gender)
+  // checks passed through user params for the gender
 }
