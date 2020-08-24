@@ -10,6 +10,8 @@ import { Grid, GridCell } from '../../ui/grid'
 import { H3, H4 } from '../../ui/typography'
 import Button from '../../ui/button'
 import { grey, grey2 } from '../../ui/common/colors'
+import Input from '../../ui/input/Input'
+// import penAndPaper from './penAndPaper.svg'
 
 // App Imports
 import userRoutes from '../../setup/routes/user'
@@ -17,49 +19,112 @@ import { logout } from './api/actions'
 
 // Component
 class Profile extends React.Component {
-  constructor(prop) {
-    super(prop)
+  constructor(props) {
+    super(props)
     this.state = {
+      isEditing: false,
       user: {
-        email: this.prop.user.details.email,
-        name: this.
-      },
-      emailInput: '',
-      addressInput: '',
-      availablityDateInput: ''
+        name: this.props.user.details.name,
+        email: this.props.user.details.email,
+        address: null,
+        bio: null,
+        image: null,
+        availabilityDate: null
+      }
     }
   }
 
-render() {
-  return (<div>
-    {/* SEO */}
-    <Helmet>
-      <title>My Profile - Crate</title>
-    </Helmet>
+  onChange = (event) => {
+    let user = this.state.user
+    user[event.target.name] = event.target.value
 
-    {/* Top title bar */}
-    <Grid style={{ backgroundColor: grey }}>
-      <GridCell style={{ padding: '2em', textAlign: 'center' }}>
-        <H3 font="secondary">My profile</H3>
-      </GridCell>
-    </Grid>
+    this.setState({
+      user
+    })
+  }
 
-    <Grid>
-      <GridCell style={{ padding: '2em', textAlign: 'center' }}>
-        <H4 style={{ marginBottom: '0.5em' }}>{props.user.details.name}</H4>
-        <div className='lower-info'>
-         <p style={{ color: grey2, marginBottom: '2em' }}>{props.user.details.email}</p>
-        </div>
+  showOrHideForm = (event) => {
+    event.preventDefault 
+    this.setState({isEditing: !this.state.isEditing})
+  }
 
-        <Link to={userRoutes.subscriptions.path}>
-          <Button theme="primary">Subscriptions</Button>
-        </Link>
+  render() {
+    return (
+      <div>
+        {/* SEO */}
+        <Helmet>
+          <title>My Profile - Crate</title>
+        </Helmet>
 
-        <Button theme="secondary" onClick={props.logout} style={{ marginLeft: '1em' }}>Logout</Button>
-      </GridCell>
-    </Grid>
-  </div>)
-}
+        {/* Top title bar */}
+        <Grid style={{ backgroundColor: grey }}>
+          <GridCell style={{ padding: '2em', textAlign: 'center' }}>
+            <H3 font="secondary">My profile</H3>
+          </GridCell>
+        </Grid>
+
+        <Grid>
+          <GridCell style={{ padding: '2em', textAlign: 'center' }}>
+            <H4 style={{ marginBottom: '0.5em' }}>{this.props.user.details.name}</H4>
+            <section className='lower-info'>
+            {!this.state.isEditing ? <Button theme='primary' onClick={e => this.showOrHideForm(e)}>Edit</Button> : <Button theme='primary' onClick={e => this.showOrHideForm(e)}>Submit</Button>}
+            {this.state.isEditing ? 
+              <Input
+                type="email"
+                fullWidth={true}
+                placeholder="Email"
+                required="required"
+                name="email"
+                value={this.state.user.email}
+                onChange={this.onChange}
+                style={{ marginTop: '1em' }}
+              /> : 
+              <p style={{ color: grey2, marginBottom: '2em' }}>
+                Email: {this.state.user.email}
+              </p>
+            }
+            {this.state.isEditing ? 
+              <Input 
+                type="email"
+                fullWidth={true}
+                placeholder="Availability Date"
+                required="required"
+                name="availabilityDate"
+                value={this.state.user.availabilityDate}
+                onChange={this.onChange}
+                style={{ marginTop: '1em' }}
+              /> : 
+              <p style={{ color: grey2, marginBottom: '2em' }}>
+                Availability Date: {this.state.user.availabilityDate}
+              </p>
+            }
+            {this.state.isEditing ? 
+              <Input 
+                type="email"
+                fullWidth={true}
+                placeholder="Address"
+                required="required"
+                name="address"
+                value={this.state.user.address}
+                onChange={this.onChange}
+                style={{ marginTop: '1em' }}
+              /> : 
+              <p style={{ color: grey2, marginBottom: '2em' }}>
+                Shipping Address: {this.state.user.address}
+              </p> 
+            }
+            </section>
+
+            <Link to={userRoutes.subscriptions.path}>
+              <Button theme="primary">Subscriptions</Button>
+            </Link>
+
+            <Button theme="secondary" onClick={this.props.logout} style={{ marginLeft: '1em' }}>Logout</Button>
+          </GridCell>
+        </Grid>
+      </div>
+    )
+  }
 }
 // Component Properties
 Profile.propTypes = {
