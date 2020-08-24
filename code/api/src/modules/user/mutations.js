@@ -6,6 +6,9 @@ import { UserType } from './types'
 import { create, remove } from './resolvers'
 
 // Create
+// Add new attributes here for user profile page improvemnts
+  // [image_link(string), description(string), shipping_address(string),
+  // (add something to track user availability for receiving orders)]
 export const userSignup = {
   type: UserType,
   args: {
@@ -28,6 +31,7 @@ export const userSignup = {
 }
 
 // Remove
+//Add mutation here for 'userUpdate
 export const userRemove = {
   type: UserType,
   args: {

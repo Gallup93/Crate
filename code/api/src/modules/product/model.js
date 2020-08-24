@@ -1,6 +1,8 @@
 'use strict'
 
 // Product
+// Add new attributes here for user profile page improvemnts
+// Add a boolean 'returned' property to products with default set to false
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('products', {
     name: {
@@ -23,3 +25,6 @@ module.exports = function(sequelize, DataTypes) {
     }
   })
 }
+
+// Create relationship between a Crate and Product.
+// New association 'belongsTo(models.Crate)'

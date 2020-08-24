@@ -1,7 +1,9 @@
 'use strict'
 
 // User
-// Add new attributes 
+// Add new attributes here for user profile page improvemnts
+  // [image_link(string), description(string), shipping_address(string),
+  // (add something to track user availability for receiving orders)]
 module.exports = function(sequelize, DataTypes) {
   let User = sequelize.define('users', {
     name: {

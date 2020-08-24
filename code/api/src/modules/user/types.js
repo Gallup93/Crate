@@ -2,6 +2,9 @@
 import { GraphQLObjectType, GraphQLString, GraphQLInt } from 'graphql'
 
 // User type
+// Add new attributes here for user profile page improvemnts
+  // [image_link(string), description(string), shipping_address(string),
+  // (add something to track user availability for receiving orders)]
 const UserType = new GraphQLObjectType({
   name: 'user',
   description: 'User type',

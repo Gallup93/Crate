@@ -6,6 +6,7 @@ import { ProductType } from './types'
 import { create, update, remove } from './resolvers'
 
 // Product create
+// Add new boolean 'returned' attribute
 export const productCreate = {
   type: ProductType,
   args: {
@@ -43,6 +44,7 @@ export const productCreate = {
 }
 
 // Product update
+// Add new boolean 'returned' attribute
 export const productUpdate = {
   type: ProductType,
   args: {
