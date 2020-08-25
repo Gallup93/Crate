@@ -64,4 +64,32 @@ describe('Profile', () => {
     
     expect(email).toBeInTheDocument()
   })
+
+  it('Should render a shipping address', () => {
+    const { getByText } = render(
+      <BrowserRouter>
+        <Provider store={store}>
+          <Profile />
+        </Provider>
+      </BrowserRouter>
+
+    )
+    const address = getByText('Shipping Address:')
+    
+    expect(address).toBeInTheDocument()
+  })
+
+  it('Should render a availability date', () => {
+    const { getByText } = render(
+      <BrowserRouter>
+        <Provider store={store}>
+          <Profile />
+        </Provider>
+      </BrowserRouter>
+
+    )
+    const date = getByText('Availability Date:')
+    
+    expect(date).toBeInTheDocument()
+  })
 })
