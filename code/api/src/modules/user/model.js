@@ -14,13 +14,20 @@ module.exports = function(sequelize, DataTypes) {
     },
     role: {
       type: DataTypes.TEXT
+    },
+    bio: {
+      type: DataTypes.TEXT
+    },
+    address: {
+      type: DataTypes.TEXT
+    },
+    availabilityDate: {
+      type: DataTypes.TEXT
+    },
+    image: {
+      type: DataTypes.TEXT
     }
-    // picture: {
-    //   type: DataTypes.IMAGE?LINK?
-    // }
-    // address: {
-    //   type: DataTypes.TEXT
-    // }
+
   })
 
   User.associate = function(models) {
@@ -28,7 +35,7 @@ module.exports = function(sequelize, DataTypes) {
   }
 // has a one to many relationship
 //will add another relationship
-// has many creates
+// has many crates
 // has many products through crates
   return User
 }
