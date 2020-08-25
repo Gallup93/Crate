@@ -1,5 +1,6 @@
 import request from 'supertest'
 import express from 'express'
+import graphqlHTTP from 'express-graphql'
 import schema from '../../setup/schema'
 
 describe('user queries', () => {
@@ -31,7 +32,7 @@ describe('user queries', () => {
       .send({ query: '{ user(id: 2) { email name } }'})
       .expect(200)
 
-    expect(response.body.data.user.name).toEqual(' \')
+    expect(response.body.data.user.name).toEqual('/')
   })
   it('is true', () => {
     expect(true).toBe(true)
