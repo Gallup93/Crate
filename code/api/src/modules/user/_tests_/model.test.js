@@ -21,9 +21,9 @@ describe('product model', () => {
   afterEach( async () => {
     const response =  await request(server)
       .post('/')
-      .send({ query: 'mutation { userUpdate(id: 1, name: "The Admin", email: "admin@crate.com", address: "admin address", description: "admin description", image: "admin image") { id } }' })
+      .send({ query: 'mutation { userUpdate(id: 1, name: "The Admin", email: "admin@crate.com", address: "admin address", bio: "admin description", image: "admin image", availabilityDate: "whenever") { id } }' })
       .set('Accept', 'application/json')
-      // .expect(200)
+      .expect(200)
   })
 
 
@@ -31,10 +31,10 @@ describe('product model', () => {
 
     const admin = await request(server)
       .get('/')
-      .send({ query: '{ user(id: 1) { id name email address description image }}' })
-      // .expect(200)
+      .send({ query: '{ user(id: 1) { id name email address bio image availabilityDate }}' })
+      .expect(200)
 
-      console.log(admin.body)
+      // console.log(admin.body)
 
     var adminId = admin.body.data.user.id
     var adminEmail = admin.body.data.user.email
@@ -43,7 +43,7 @@ describe('product model', () => {
       .post('/admin/product/create')
       .send({ query: 'mutation { userUpdate(id: 1, email: "HipAndCool@aol.com") { id email } }' })
       .set('Accept', 'application/json')
-      // .expect(200)
+      .expect(200)
 
     expect(response.body.data.userUpdate.id).toEqual(adminId)
     expect(response.body.data.userUpdate.email).not.toEqual(adminEmail)
