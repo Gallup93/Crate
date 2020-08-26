@@ -31,10 +31,20 @@ export async function create(parentValue, { name, email, password }) {
 }
 
 
-// Add 'export async function update' here (see issue #35)
+  // update
+  export async function update(parentValue, { id, name, email}) {
+  await models.User.update(
+    {
+      name,
+      email
+    },
+    { where: { id } }
+  );
+  return getById(parentValue, { id })
+}
 
-
-export async function login(parentValue, { email, password }) {
+  // login
+  export async function login(parentValue, { email, password }) {
   const user = await models.User.findOne({ where: { email } })
 
   if (!user) {
