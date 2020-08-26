@@ -15,6 +15,18 @@ module.exports = function(sequelize, DataTypes) {
     password: {
       type: DataTypes.TEXT
     },
+    address: {
+      type: DataTypes.TEXT
+    },
+    bio: {
+      type: DataTypes.TEXT
+    },
+    image: {
+      type: DataTypes.TEXT
+    },
+    availabilityDate: {
+      type: DataTypes.TEXT
+    },
     role: {
       type: DataTypes.TEXT
     }
