@@ -26,15 +26,12 @@ describe('product model', () => {
       .expect(200)
   })
 
-
   it('Updates a users email', async () => {
 
     const admin = await request(server)
       .get('/')
       .send({ query: '{ user(id: 1) { id name email address bio image availabilityDate }}' })
       .expect(200)
-
-      // console.log(admin.body)
 
     var adminId = admin.body.data.user.id
     var adminEmail = admin.body.data.user.email
@@ -48,7 +45,6 @@ describe('product model', () => {
     expect(response.body.data.userUpdate.id).toEqual(adminId)
     expect(response.body.data.userUpdate.email).not.toEqual(adminEmail)
     expect(response.body.data.userUpdate.email).toEqual('HipAndCool@aol.com')
-
   })
 
   it('should test that true === true', () => {
