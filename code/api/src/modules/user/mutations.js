@@ -47,6 +47,26 @@ export const userUpdate = {
     email: {
       name: 'email',
       type: GraphQLString
+    },
+
+    address: {
+      name: 'address',
+      type: GraphQLString
+    },
+
+    image: {
+      name: 'image',
+      type: GraphQLString
+    },
+
+    bio: {
+      name: 'bio',
+      type: GraphQLString
+    },
+    
+    availabilityDate: {
+      name: 'availabilityDate',
+      type: GraphQLString
     }
   },
   resolve: update
