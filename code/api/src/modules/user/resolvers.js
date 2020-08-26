@@ -32,11 +32,15 @@ export async function create(parentValue, { name, email, password }) {
 
 
   // update
-  export async function update(parentValue, { id, name, email}) {
+  export async function update(parentValue, { id, name, email, address, image, bio, availabilityDate}) {
   await models.User.update(
     {
       name,
-      email
+      email,
+      address,
+      image,
+      bio,
+      availabilityDate
     },
     { where: { id } }
   );
