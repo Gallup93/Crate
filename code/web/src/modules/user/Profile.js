@@ -17,7 +17,6 @@ import userRoutes from "../../setup/routes/user";
 import { logout } from "./api/actions";
 
 // Component
-
 class Profile extends React.Component {
 	constructor(props) {
 		super(props);
@@ -111,9 +110,53 @@ class Profile extends React.Component {
 								</p>
 							)}
 						</section>
-						<p style={{ color: grey2, marginBottom: "2em" }}>
-							{props.user.details.email}
-						</p>
+            <section className='lower-info'>
+            {this.state.isEditing ? 
+              <Input
+                type="email"
+                fullWidth={true}
+                placeholder="Email"
+                required="required"
+                name="email"
+                value={this.state.user.email}
+                onChange={this.onChange}
+                style={{ marginTop: '1em' }}
+              /> : 
+              <p style={{ color: grey2, marginBottom: '2em' }}>
+                Email: {this.state.user.email}
+              </p>
+            }
+            {this.state.isEditing ? 
+              <Input 
+                type="email"
+                fullWidth={true}
+                placeholder="Availability Date"
+                required="required"
+                name="availabilityDate"
+                value={this.state.user.availabilityDate}
+                onChange={this.onChange}
+                style={{ marginTop: '1em' }}
+              /> : 
+              <p style={{ color: grey2, marginBottom: '2em' }}>
+                Availability Date: {this.state.user.availabilityDate}
+              </p>
+            }
+            {this.state.isEditing ? 
+              <Input 
+                type="email"
+                fullWidth={true}
+                placeholder="Address"
+                required="required"
+                name="address"
+                value={this.state.user.address}
+                onChange={this.onChange}
+                style={{ marginTop: '1em' }}
+              /> : 
+              <p style={{ color: grey2, marginBottom: '2em' }}>
+                Shipping Address: {this.state.user.address}
+              </p> 
+            }
+            </section>
 
 						<Link to={userRoutes.subscriptions.path}>
 							<Button theme="primary">Subscriptions</Button>
@@ -133,6 +176,7 @@ class Profile extends React.Component {
 	}
 }
 
+  
 // Component Properties
 Profile.propTypes = {
 	user: PropTypes.object.isRequired,
