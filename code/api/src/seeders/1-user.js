@@ -10,6 +10,10 @@ module.exports = {
       {
         name: 'The Admin',
         email: 'admin@crate.com',
+        address: '123 admin st',
+        bio: 'The life of an admin',
+        image: 'smiling-admin.jpg',
+        availabilityDate: 'never',
         password: bcrypt.hashSync('123456', config.saltRounds),
         role: params.user.roles.admin,
         createdAt: new Date(),
@@ -18,6 +22,10 @@ module.exports = {
       {
         name: 'The User',
         email: 'user@crate.com',
+        address: '456 user ave',
+        bio: 'user stuff. user things',
+        image: 'crying-user.jpg',
+        availabilityDate: 'always',
         password: bcrypt.hashSync('123456', config.saltRounds),
         role: params.user.roles.user,
         createdAt: new Date(),
