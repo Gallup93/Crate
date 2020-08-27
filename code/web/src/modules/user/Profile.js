@@ -14,7 +14,7 @@ import { Input } from "../../ui/input";
 
 // App Imports
 import userRoutes from "../../setup/routes/user";
-import { logout } from "./api/actions";
+import { login, logout } from "./api/actions";
 
 // Component
 class Profile extends React.Component {
@@ -37,7 +37,10 @@ class Profile extends React.Component {
 	}
 
 	onEdit = (event) => {
-		event.preventDefault();
+    event.preventDefault();
+    if(!this.state.isEditing) {
+      
+    }
 		this.setState({
 			isEditing: !this.state.isEditing
 		});

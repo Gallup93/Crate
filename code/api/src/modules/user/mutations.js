@@ -25,6 +25,25 @@ export const userSignup = {
     password: {
       name: 'password',
       type: GraphQLString
+    },
+    address: {
+      name: 'address',
+      type: GraphQLString
+    },
+
+    image: {
+      name: 'image',
+      type: GraphQLString
+    },
+
+    bio: {
+      name: 'bio',
+      type: GraphQLString
+    },
+    
+    availabilityDate: {
+      name: 'availabilityDate',
+      type: GraphQLString
     }
   },
   resolve: create

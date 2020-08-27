@@ -11,7 +11,7 @@ import models from '../../setup/models'
 // Add new attributes here for user profile page improvemnts (see issue #35)
 // [image_link, description, shipping_address,
 // (something to track availability date(s?) for receiving orders)]
-export async function create(parentValue, { name, email, password }) {
+export async function create(parentValue, { name, email, password, address, bio, availabilityDate, image }) {
   // Users exists with same email check
   const user = await models.User.findOne({ where: { email } })
 
@@ -22,7 +22,10 @@ export async function create(parentValue, { name, email, password }) {
     return await models.User.create({
       name,
       email,
-      password: passwordHashed
+      password: passwordHashed,
+      address,
+      bio,
+      availabilityDate
     })
   } else {
     // User exists
@@ -68,7 +71,11 @@ export async function create(parentValue, { name, email, password }) {
         id: userDetails.id,
         name: userDetails.name,
         email: userDetails.email,
-        role: userDetails.role
+        role: userDetails.role,
+        address: userDetails.address,
+        bio: userDetails.bio,
+        availabilityDate: userDetails.availabilityDate,
+        image: userDetails.image
       }
 
       return {

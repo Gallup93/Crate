@@ -25,6 +25,11 @@ export function setUser(token, user) {
   return { type: SET_USER, user }
 }
 
+//Update a user
+export function updateUser(user) {
+  
+}
+
 // Login a user using credentials
 export function login(userCredentials, isLoading = true) {
   return dispatch => {
@@ -36,7 +41,7 @@ export function login(userCredentials, isLoading = true) {
     return axios.post(routeApi, query({
       operation: 'userLogin',
       variables: userCredentials,
-      fields: ['user {name, email, role}', 'token']
+      fields: ['user {name, email, address, bio, image, availabilityDate, role}', 'token']
     }))
       .then(response => {
         let error = ''
@@ -46,7 +51,7 @@ export function login(userCredentials, isLoading = true) {
         } else if (response.data.data.userLogin.token !== '') {
           const token = response.data.data.userLogin.token
           const user = response.data.data.userLogin.user
-
+          console.log(response)
           dispatch(setUser(token, user))
 
           loginSetUserLocalStorageAndCookie(token, user)
