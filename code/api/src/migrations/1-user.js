@@ -31,6 +31,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       }
+
     });
   },
   // Add down migration for newly added attributes

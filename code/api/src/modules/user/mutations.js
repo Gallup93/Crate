@@ -1,3 +1,6 @@
+// mutations are used for altering data. Inserting, updating, deleting data.
+// they are similar to resolvers but differ in that they alter data
+
 // Imports
 import { GraphQLString, GraphQLInt } from 'graphql'
 
@@ -63,7 +66,7 @@ export const userUpdate = {
       name: 'bio',
       type: GraphQLString
     },
-    
+
     availabilityDate: {
       name: 'availabilityDate',
       type: GraphQLString
@@ -73,6 +76,7 @@ export const userUpdate = {
 }
 
 // Remove
+// delete a user by id
 export const userRemove = {
   type: UserType,
   args: {
