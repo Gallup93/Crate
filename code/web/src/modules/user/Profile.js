@@ -74,9 +74,9 @@ class Profile extends React.Component {
 						<H3 font="secondary">My profile</H3>
 						{this.state.isEditing ? (
 							<section>
-								<Button onClick={this.onEdit} theme="primary">
+								{/* <Button onClick={this.onEdit} theme="primary">
 									Submit
-								</Button>
+								</Button> */}
 							</section>
 						) : (
 							<section>
@@ -193,6 +193,9 @@ class Profile extends React.Component {
 										Availability Date 
 									</p>
 								</section>
+								<Button onClick={this.onEdit} theme="primary">
+									Submit
+								</Button>
 							</section>
 						) : (
 							<section
