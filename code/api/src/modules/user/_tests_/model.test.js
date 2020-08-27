@@ -39,7 +39,7 @@ describe('product model', () => {
 
     const response = await request(server)
       .post('/admin/user/update')
-      .send({ query: 'mutation { userUpdate(id: 1, address: "457 plz work") { id address } }' })
+      .send({ query: 'mutation { userUpdate(id: 1, address: "457 plz work") { id name email address bio image availabilityDate  } }' })
       .set('Accept', 'application/json')
       .expect(200)
 
