@@ -116,9 +116,7 @@ class Profile extends React.Component {
 											height: "20vh",
 										}}
 									/>
-									<p style={{ color: grey2, marginBottom: "2em" }}>
-										Bio 
-									</p>
+									<p style={{ color: grey2, marginBottom: "2em" }}>Bio</p>
 								</section>
 								<section className="image">
 									<Input
@@ -133,9 +131,7 @@ class Profile extends React.Component {
 											width: "50vw",
 										}}
 									/>
-								<p style={{ color: grey2, marginBottom: "2em" }}>
-										Image URL
-								</p>
+									<p style={{ color: grey2, marginBottom: "2em" }}>Image URL</p>
 								</section>
 								<section className="email">
 									<Input
@@ -151,12 +147,9 @@ class Profile extends React.Component {
 											width: "50vw",
 										}}
 									/>
-								<p style={{ color: grey2, marginBottom: "2em" }}>
-										Email 
-								</p>
+									<p style={{ color: grey2, marginBottom: "2em" }}>Email</p>
 								</section>
 								<section className="address">
-
 									<Input
 										type="text"
 										fullWidth={true}
@@ -170,12 +163,9 @@ class Profile extends React.Component {
 											width: "50vw",
 										}}
 									/>
-									<p style={{ color: grey2, marginBottom: "2em" }}>
-										Address 
-									</p>
+									<p style={{ color: grey2, marginBottom: "2em" }}>Address</p>
 								</section>
 								<section>
-
 									<Input
 										type="date"
 										fullWidth={true}
@@ -190,7 +180,7 @@ class Profile extends React.Component {
 										}}
 									/>
 									<p style={{ color: grey2, marginBottom: "2em" }}>
-										Availability Date 
+										Availability Date
 									</p>
 								</section>
 								<Button onClick={this.onEdit} theme="primary">
@@ -242,16 +232,16 @@ class Profile extends React.Component {
 											width: "40vw",
 										}}
 									>
-										<p style={{ color: grey2, marginBottom: "2em" }}>
-											<p
-												style={{
-													display: "flex",
-													marginBottom: ".5em",
-													fontSize: "x-large",
-												}}
-											>
-												Bio:
-											</p>
+										<p
+											style={{
+												color: grey2,
+												marginBottom: "2em",
+												display: "flex",
+												marginBottom: ".5em",
+												fontSize: "x-large",
+											}}
+										>
+											Bio:
 											{this.state.user.bio}
 										</p>
 									</section>
@@ -272,7 +262,6 @@ class Profile extends React.Component {
 						<Link to={userRoutes.subscriptions.path}>
 							<Button theme="primary">Subscriptions</Button>
 						</Link>
-
 						<Button
 							theme="secondary"
 							onClick={props.logout}
