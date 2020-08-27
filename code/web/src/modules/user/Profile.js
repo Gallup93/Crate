@@ -14,7 +14,7 @@ import { Input } from "../../ui/input";
 
 // App Imports
 import userRoutes from "../../setup/routes/user";
-import { login, logout } from "./api/actions";
+import { updateUser, logout } from "./api/actions";
 
 // Component
 class Profile extends React.Component {
@@ -24,22 +24,41 @@ class Profile extends React.Component {
 		this.state = {
 			isEditing: false,
 			user: {
+        id: this.props.user.details.id,
 				name: this.props.user.details.name,
 				email: this.props.user.details.email,
-				address: "",
-				bio: "",
+				address: this.props.user.details.address,
+				bio: this.props.user.details.bio,
 				// "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc maximus, nulla ut commodo sagittis, sapien dui mattis dui, non pulvinar lorem felis nec erat",
-				image: "",
+				image: this.props.user.details.image,
 				// "https://www.pngitem.com/pimgs/m/30-307416_profile-icon-png-image-free-download-searchpng-employee.png",
-				availabilityDate: "",
+				availabilityDate: this.props.user.details.availabilityDate,
 			},
 		};
 	}
 
 	onEdit = (event) => {
     event.preventDefault();
-    if(!this.state.isEditing) {
-      
+    if(this.state.isEditing) {
+      updateUser(this.state.user)
+      // .then(response => {
+      //   if (this.props.user.error && this.props.user.error.length > 0) {
+      //     this.props.messageShow(this.props.user.error)
+
+      //     window.setTimeout(() => {
+      //       this.props.messageHide()
+      //     }, 5000)
+      //   } else {
+      //     this.props.messageHide()
+      //   }
+      // })
+      // .catch(error => {
+      //   this.props.messageShow(this.props.user.error)
+
+      //   window.setTimeout(() => {
+      //     this.props.messageHide()
+      //   }, 5000)
+      // })
     }
 		this.setState({
 			isEditing: !this.state.isEditing
