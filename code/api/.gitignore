@@ -1,7 +1,1 @@
-node_modules/
-build/
-public/images/uploads/*
-!public/images/uploads/.gitkeep
-package.json
-package-lock.json
-database.json
+

@@ -1,0 +1,32 @@
+module.exports = {
+  up: (queryInterface, Sequelize) => {
+    return queryInterface.createTable('crateproducts', {
+      id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: Sequelize.INTEGER
+      },
+      crateId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'crates',
+          key: 'id'
+        },
+        allowNull: false
+      },
+      productId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'products',
+          key: 'id'
+        },
+        allowNull: false
+      }
+    });
+  },
+
+  down: (queryInterface, Sequelize) => {
+    return queryInterface.dropTable('crateproducts');
+  }
+}
