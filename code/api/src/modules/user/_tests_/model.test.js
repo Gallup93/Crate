@@ -26,7 +26,7 @@ describe('product model', () => {
       .expect(200)
   })
 
-  it('Updates a users email', async () => {
+  it('Updates a users address', async () => {
 
     const admin = await request(server)
       .get('/')
@@ -34,17 +34,20 @@ describe('product model', () => {
       .expect(200)
 
     var adminId = admin.body.data.user.id
-    var adminEmail = admin.body.data.user.email
+    var adminAddress = admin.body.data.user.address
+    console.log(admin.body)
 
     const response = await request(server)
-      .post('/admin/product/create')
-      .send({ query: 'mutation { userUpdate(id: 1, email: "HipAndCool@aol.com") { id email } }' })
+      .post('/admin/user/update')
+      .send({ query: 'mutation { userUpdate(id: 1, address: "457 plz work") { id address } }' })
       .set('Accept', 'application/json')
       .expect(200)
 
+    console.log(response.body)
+
     expect(response.body.data.userUpdate.id).toEqual(adminId)
-    expect(response.body.data.userUpdate.email).not.toEqual(adminEmail)
-    expect(response.body.data.userUpdate.email).toEqual('HipAndCool@aol.com')
+    expect(response.body.data.userUpdate.address).not.toEqual(adminAddress)
+    expect(response.body.data.userUpdate.address).toEqual('457 plz work')
   })
 
   it('should test that true === true', () => {
