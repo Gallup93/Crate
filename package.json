@@ -26,18 +26,7 @@
   "homepage": "https://github.com/atulmy/crate#readme",
   "dependencies": {},
   "devDependencies": {
-<<<<<<< HEAD:package.json
-    "concurrently": "^4.1.0"
-  },
-  "jest": {
-   "testEnvironment": "node",
-   "coveragePathIgnorePatterns": [
-     "/node_modules/"
-   ]
- }
-=======
     "concurrently": "^4.1.0",
     "jest-cli": "^26.4.2"
   }
->>>>>>> main:code/package.json
 }
