@@ -41,24 +41,6 @@ class Profile extends React.Component {
     // event.preventDefault();
     if(this.state.isEditing) {
       this.props.updateUser(this.state.user)
-      // .then(response => {
-      //   if (this.props.user.error && this.props.user.error.length > 0) {
-      //     this.props.messageShow(this.props.user.error)
-
-      //     window.setTimeout(() => {
-      //       this.props.messageHide()
-      //     }, 5000)
-      //   } else {
-      //     this.props.messageHide()
-      //   }
-      // })
-      // .catch(error => {
-      //   this.props.messageShow(this.props.user.error)
-
-      //   window.setTimeout(() => {
-      //     this.props.messageHide()
-      //   }, 5000)
-      // })
     }
 		this.setState({
       isEditing: !this.state.isEditing,
