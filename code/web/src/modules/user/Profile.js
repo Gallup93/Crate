@@ -66,106 +66,206 @@ class Profile extends React.Component {
 
 				{/* Top title bar */}
 				<Grid style={{ backgroundColor: grey }}>
-					<GridCell style={{ padding: "2em", textAlign: "center" }}>
+					<GridCell
+						style={{
+							padding: "2em",
+							textAlign: "center",
+							display: "flex",
+							flexDirection: "row",
+							justifyContent: "space-between",
+						}}
+					>
 						<H3 font="secondary">My profile</H3>
+						{this.state.isEditing ? (
+							<section>
+								{/* <Button onClick={this.onEdit} theme="primary">
+									Submit
+								</Button> */}
+							</section>
+						) : (
+							<section>
+								<Button onClick={this.onEdit} theme="primary">
+									Edit
+								</Button>
+							</section>
+						)}
 					</GridCell>
 				</Grid>
-
 				<Grid>
 					<GridCell style={{ padding: "2em", textAlign: "center" }}>
 						<H4 style={{ marginBottom: "0.5em" }}>{props.user.details.name}</H4>
 						{this.state.isEditing ? (
-							<Button onClick={this.onEdit} theme="primary">
-								Submit
-							</Button>
+							<section
+								className="inputs"
+								style={{
+									marginTop: "1em",
+									display: "flex",
+									flexDirection: "column",
+									alignItems: "center",
+									height: "100%",
+									fontFamily: "Roboto, sans-serif",
+								}}
+							>
+								<section className="bio">
+									<input
+										type="textarea"
+										placeholder={this.state.user.bio}
+										required="required"
+										name="bio"
+										value={this.state.user.bio}
+										onChange={this.onChange}
+										style={{
+											marginTop: "1em",
+											width: "50vw",
+											height: "20vh",
+										}}
+									/>
+									<p style={{ color: grey2, marginBottom: "2em" }}>Bio</p>
+								</section>
+								<section className="image">
+									<Input
+										type="text"
+										placeholder="enter an image URL"
+										required="required"
+										name="image"
+										value={this.state.user.image}
+										onChange={this.onChange}
+										style={{
+											marginTop: "1em",
+											width: "50vw",
+										}}
+									/>
+									<p style={{ color: grey2, marginBottom: "2em" }}>Image URL</p>
+								</section>
+								<section className="email">
+									<Input
+										type="email"
+										fullWidth={true}
+										placeholder="Email"
+										required="required"
+										name="email"
+										value={this.state.user.email}
+										onChange={this.onChange}
+										style={{
+											marginTop: "1em",
+											width: "50vw",
+										}}
+									/>
+									<p style={{ color: grey2, marginBottom: "2em" }}>Email</p>
+								</section>
+								<section className="address">
+									<Input
+										type="text"
+										fullWidth={true}
+										placeholder="Address"
+										required="required"
+										name="address"
+										value={this.state.user.address}
+										onChange={this.onChange}
+										style={{
+											marginTop: "1em",
+											width: "50vw",
+										}}
+									/>
+									<p style={{ color: grey2, marginBottom: "2em" }}>Address</p>
+								</section>
+								<section>
+									<Input
+										type="date"
+										fullWidth={true}
+										placeholder="Availability Date"
+										required="required"
+										name="availabilityDate"
+										value={this.state.user.availabilityDate}
+										onChange={this.onChange}
+										style={{
+											marginTop: "1em",
+											width: "50vw",
+										}}
+									/>
+									<p style={{ color: grey2, marginBottom: "2em" }}>
+										Availability Date
+									</p>
+								</section>
+								<Button onClick={this.onEdit} theme="primary">
+									Submit
+								</Button>
+							</section>
 						) : (
-							<Button onClick={this.onEdit} theme="primary">Edit</Button>
+							<section
+								className="user-info"
+								style={{
+									display: "flex",
+									flexDirection: "column",
+									alignItems: "center",
+									justifyContent: "center",
+									padding: "inherit",
+								}}
+							>
+								<section
+									className="upper-info"
+									style={{
+										display: "flex",
+										flexDirection: "row",
+										alignItems: "inherit",
+										justifyContent: "center",
+										padding: "inherit",
+									}}
+								>
+									<section
+										className="image"
+										style={{
+											display: "flex",
+											flexDirection: "row",
+											alignItems: "center",
+											height: "100%",
+										}}
+									>
+										<img
+											src={this.state.user.image}
+											style={{ height: "30vh" }}
+										/>
+									</section>
+									<section
+										className="bio"
+										style={{
+											display: "flex",
+											flexDirection: "row",
+											alignItems: "left",
+											height: "20vh",
+											width: "40vw",
+										}}
+									>
+										<p
+											style={{
+												color: grey2,
+												marginBottom: "2em",
+												display: "flex",
+												marginBottom: ".5em",
+												fontSize: "x-large",
+											}}
+										>
+											Bio:
+											{this.state.user.bio}
+										</p>
+									</section>
+								</section>
+								<section className="lower-info">
+									<p style={{ color: grey2, marginBottom: "2em" }}>
+										Email: {this.state.user.email}
+									</p>
+									<p style={{ color: grey2, marginBottom: "2em" }}>
+										Availability Date: {this.state.user.availabilityDate}
+									</p>
+									<p style={{ color: grey2, marginBottom: "2em" }}>
+										Shipping Address: {this.state.user.address}
+									</p>
+								</section>
+							</section>
 						)}
-						<section className="upper-info">
-							{this.state.isEditing ? (
-								<Input
-									type="text"
-									placeholder="enter an image URL"
-									required="required"
-									name="image"
-									value={this.state.user.image}
-									onChange={this.onChange}
-									style={{ marginTop: "1em" }}
-								/>
-							) : (
-								<img
-									src={this.state.user.image}
-									style={{ height: 100, width: 100 }}
-								/>
-							)}
-							{this.state.isEditing ? (
-								<Input
-									type="text"
-									placeholder={this.state.user.bio}
-									required="required"
-									name="bio"
-									value={this.state.user.bio}
-									onChange={this.onChange}
-									style={{ marginTop: "1em" }}
-								/>
-							) : (
-								<p style={{ color: grey2, marginBottom: "2em" }}>
-									Bio: {this.state.user.bio}
-								</p>
-							)}
-						</section>
-            <section className='lower-info'>
-            {this.state.isEditing ? 
-              <Input
-                type="email"
-                fullWidth={true}
-                placeholder="Email"
-                required="required"
-                name="email"
-                value={this.state.user.email}
-                onChange={this.onChange}
-                style={{ marginTop: '1em' }}
-              /> : 
-              <p style={{ color: grey2, marginBottom: '2em' }}>
-                Email: {this.state.user.email}
-              </p>
-            }
-            {this.state.isEditing ? 
-              <Input 
-                type="email"
-                fullWidth={true}
-                placeholder="Availability Date"
-                required="required"
-                name="availabilityDate"
-                value={this.state.user.availabilityDate}
-                onChange={this.onChange}
-                style={{ marginTop: '1em' }}
-              /> : 
-              <p style={{ color: grey2, marginBottom: '2em' }}>
-                Availability Date: {this.state.user.availabilityDate}
-              </p>
-            }
-            {this.state.isEditing ? 
-              <Input 
-                type="email"
-                fullWidth={true}
-                placeholder="Address"
-                required="required"
-                name="address"
-                value={this.state.user.address}
-                onChange={this.onChange}
-                style={{ marginTop: '1em' }}
-              /> : 
-              <p style={{ color: grey2, marginBottom: '2em' }}>
-                Shipping Address: {this.state.user.address}
-              </p> 
-            }
-            </section>
-
 						<Link to={userRoutes.subscriptions.path}>
 							<Button theme="primary">Subscriptions</Button>
 						</Link>
-
 						<Button
 							theme="secondary"
 							onClick={props.logout}
@@ -180,7 +280,6 @@ class Profile extends React.Component {
 	}
 }
 
-  
 // Component Properties
 Profile.propTypes = {
 	user: PropTypes.object.isRequired,
