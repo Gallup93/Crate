@@ -28,9 +28,13 @@ module.exports = function(sequelize, DataTypes) {
     //   type: DataTypes.TEXT, default 'False'
     // }
   })
-  // Product.associate = function(models) {
-  //   Product.belongsTo(models.Crate)
-  // }
+  Product.associate = function(models) {
+    Product.belongsToMany(models.Crates, {
+      through: 'CrateProducts',
+      as: 'crates',
+      foreignKey: 'productId'
+    })
+  }
 
   // return Product
 }
