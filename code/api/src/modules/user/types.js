@@ -1,16 +1,24 @@
 // Imports
+// essentially the schema
 import { GraphQLObjectType, GraphQLString, GraphQLInt } from 'graphql'
 
 // User type
+// Add new attributes here for user profile page improvemnts (see issue #35)
+// [image_link(GraphQLString), description(GraphQLString), shipping_address(GraphQLString),
+// (something to track availability date(s?) for receiving orders)]
 const UserType = new GraphQLObjectType({
   name: 'user',
   description: 'User type',
-
+  //user model
   fields: () => ({
     id: { type: GraphQLInt },
     name: { type: GraphQLString },
     email: { type: GraphQLString },
     password: { type: GraphQLString },
+    address: { type: GraphQLString },
+    image: { type: GraphQLString },
+    bio: { type: GraphQLString },
+    availabilityDate: { type: GraphQLString },
     role: { type: GraphQLString },
     createdAt: { type: GraphQLString },
     updatedAt: { type: GraphQLString }
@@ -40,3 +48,4 @@ const UserGenderType = new GraphQLObjectType({
 })
 
 export { UserType, UserLoginType, UserGenderType }
+//makes the defined user types available to use in resolvers & mutations

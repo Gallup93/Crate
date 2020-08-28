@@ -2,6 +2,7 @@
 import { GraphQLObjectType, GraphQLString, GraphQLInt } from 'graphql'
 
 // Product type
+// Add new attribute 'returned'(boolean)
 const ProductType = new GraphQLObjectType({
   name: 'product',
   description: 'Product Type',

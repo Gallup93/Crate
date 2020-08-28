@@ -11,7 +11,8 @@
     "setup:mobile": "npm install --prefix mobile",
     "start": "concurrently 'npm run start:web' 'npm run start:api' --kill-others --names 'web,api'",
     "start:web": "npm run start --prefix web",
-    "start:api": "npm run start --prefix api"
+    "start:api": "npm run start --prefix api",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -25,7 +26,12 @@
   "homepage": "https://github.com/atulmy/crate#readme",
   "dependencies": {},
   "devDependencies": {
-    "concurrently": "^4.1.0",
-    "jest-cli": "^26.4.2"
-  }
+    "concurrently": "^4.1.0"
+  },
+  "jest": {
+   "testEnvironment": "node",
+   "coveragePathIgnorePatterns": [
+     "/node_modules/"
+   ]
+ }
 }
