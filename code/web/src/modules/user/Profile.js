@@ -93,7 +93,7 @@ class Profile extends React.Component {
 				</Grid>
 				<Grid>
 					<GridCell style={{ padding: "2em", textAlign: "center" }}>
-						<H4 style={{ marginBottom: "0.5em" }}>{props.user.details.name}</H4>
+						<H4 style={{ marginBottom: "0.5em" , fontSize: "12px + 1.8vw"}}>{props.user.details.name}</H4>
 						{this.state.isEditing ? (
 							<section
 								className="inputs"
@@ -107,7 +107,7 @@ class Profile extends React.Component {
 								}}
 							>
 								<section className="bio">
-									<input
+									<textarea
 										type="textarea"
 										placeholder={this.state.user.bio}
 										required="required"
@@ -117,7 +117,8 @@ class Profile extends React.Component {
 										style={{
 											marginTop: "1em",
 											width: "50vw",
-											height: "20vh",
+                      height: "20vh",
+                      fontFamily: "Roboto, sans-serif"
 										}}
 									/>
 									<p style={{ color: grey2, marginBottom: "2em" }}>Bio</p>
@@ -218,22 +219,28 @@ class Profile extends React.Component {
 											display: "flex",
 											flexDirection: "row",
 											alignItems: "center",
-											height: "100%",
+                      height: "100%",
 										}}
 									>
 										<img
 											src={this.state.user.image}
-											style={{ height: "30vh" }}
+											style={{ height: "30vh", borderRadius: "8px" }}
 										/>
 									</section>
+                    <b style={{ fontWeight: "bold", fontSize: "22px", color: "black", marginTop: "-18vh", marginLeft: "3vw"}}>Bio: </b>
 									<section
 										className="bio"
 										style={{
 											display: "flex",
-											flexDirection: "row",
+                      textAlign: "left",
+                      marginLeft: "50px",
 											alignItems: "left",
-											height: "20vh",
-											width: "40vw",
+                      height: "20vh",
+                      width: "30vw",
+                      maxWidth: "30vw",
+                      overflow: "none",
+                      wordWrap: "break-word",
+                      overflowY: "auto"
 										}}
 									>
 										<p
@@ -242,23 +249,22 @@ class Profile extends React.Component {
 												marginBottom: "2em",
 												display: "flex",
 												marginBottom: ".5em",
-												fontSize: "x-large",
+												fontSize: "21px",
 											}}
 										>
-											Bio:
 											{this.state.user.bio}
 										</p>
 									</section>
 								</section>
 								<section className="lower-info">
-									<p style={{ color: grey2, marginBottom: "2em" }}>
-										Email: {this.state.user.email}
+									<p style={{ color: grey2, marginBottom: "2em", fontSize: "20px" }}>
+										<b style={{ fontWeight: "bold", fontSize: "21px", color: "black"}}>Email:</b> {this.state.user.email}
 									</p>
-									<p style={{ color: grey2, marginBottom: "2em" }}>
-										Availability Date: {this.state.user.availabilityDate}
+									<p style={{ color: grey2, marginBottom: "2em", fontSize: "20px" }}>
+                  <b style={{ fontWeight: "bold", fontSize: "21px", color: "black"}}>Availability Date: </b>{this.state.user.availabilityDate}
 									</p>
-									<p style={{ color: grey2, marginBottom: "2em" }}>
-										Shipping Address: {this.state.user.address}
+									<p style={{ color: grey2, marginBottom: "2em", fontSize: "20px" }}>
+                  <b style={{ fontWeight: "bold", fontSize: "21px", color: "black"}}>Shipping Address: </b>{this.state.user.address}
 									</p>
 								</section>
 							</section>

@@ -20,23 +20,7 @@ export default (state = userInitialState, action) => {
         isAuthenticated: !isEmpty(action.user),
         details: action.user,
       }
-    // case UPDATE_REQUEST: 
-    //   return {
-    //     ...state,
-    //     error: null,
-    //     detail: action.isLoading
-    // }
-    // case UPDATE_RESPONSE: 
-    //   return {
-    //     ...state,
-    //     error: action.error,
-    //     isLoading: false
-    // }
-    case SET_UPDATED_USER:
-      return {
-        isAuthenticated: true,
-        details: action.user
-      }
+      
     case LOGIN_REQUEST:
       return {
         ...state,
