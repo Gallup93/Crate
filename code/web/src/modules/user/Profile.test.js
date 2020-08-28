@@ -92,4 +92,63 @@ describe('Profile', () => {
     
     expect(date).toBeInTheDocument()
   })
+
+  it('Should render an image', () => {
+    const { getByRole } = render(
+      <BrowserRouter>
+        <Provider store={store}>
+          <Profile />
+        </Provider>
+      </BrowserRouter>
+
+    )
+    const image = getByRole('img')
+    
+    expect(image).toBeInTheDocument()
+  })
+
+  it('Should render a bio', () => {
+    const { getByText } = render(
+      <BrowserRouter>
+        <Provider store={store}>
+          <Profile />
+        </Provider>
+      </BrowserRouter>
+    )
+    const bio = getByText('Bio', { exact: false })
+    expect(bio).toBeInTheDocument()
+  })
+
+  it('Should render a Submit button after the Edit button is clicked', () => {
+    const { getByRole } = render(
+      <BrowserRouter>
+        <Provider store={store}>
+          <Profile />
+        </Provider>
+      </BrowserRouter>
+    )
+    const editButton = getByRole('button', { name: 'Edit' })
+    expect(editButton).toBeInTheDocument()
+    fireEvent.click(editButton)
+    const submitButton = getByRole('button', { name: 'Submit' })
+    expect(submitButton).toBeInTheDocument()
+  })
+  it('Should render a 5 inputs after the Edit button is clicked', () => {
+    const { getByRole, getAllByRole, getByText } = render(
+      <BrowserRouter>
+        <Provider store={store}>
+          <Profile />
+        </Provider>
+      </BrowserRouter>
+    )
+    const editButton = getByRole('button', { name: 'Edit' })
+    expect(editButton).toBeInTheDocument()
+    fireEvent.click(editButton)
+    const input = getAllByRole('textbox')
+    const dateInput = getByText('Availability Date')
+    const imageInput = getByText('Image URL')
+    expect(input).toHaveLength(3)
+    expect(dateInput).toBeInTheDocument()
+    expect(imageInput).toBeInTheDocument()
+  })
 })
