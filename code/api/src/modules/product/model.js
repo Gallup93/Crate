@@ -29,12 +29,8 @@ module.exports = function(sequelize, DataTypes) {
     // }
   })
   Product.associate = function(models) {
-    Product.belongsToMany(models.Crates, {
-      through: 'CrateProducts',
-      as: 'crates',
-      foreignKey: 'productId'
-    })
+    Product.hasMany(models.CrateProducts)
   }
 
-  // return Product
+  return Product
 }

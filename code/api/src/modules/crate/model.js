@@ -13,11 +13,7 @@ module.exports = function(sequelize, DataTypes) {
   // Add new association 'hasMany(models.Product)'
   Crate.associate = function(models) {
     Crate.hasMany(models.Subscription)
-    Crate.belongsToMany(models.Products, {
-      through: 'CrateProducts',
-      as: 'products',
-      foreignKey: 'CrateId'
-    });
+    Crate.hasMany(models.CrateProducts)
     // Crate.hasMany(models.Product)
     // Crate.hasMany(models.User).through(models.Subscription)
     // js many to many relationship with 'joins table' equivalent
