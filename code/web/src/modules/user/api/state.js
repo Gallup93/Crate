@@ -34,7 +34,7 @@ export default (state = userInitialState, action) => {
     // }
     case SET_UPDATED_USER:
       return {
-        ...state,
+        isAuthenticated: true,
         details: action.user
       }
     case LOGIN_REQUEST:

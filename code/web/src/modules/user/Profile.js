@@ -38,9 +38,9 @@ class Profile extends React.Component {
 	}
 
 	onEdit = (event) => {
-    event.preventDefault();
+    // event.preventDefault();
     if(this.state.isEditing) {
-      updateUser(this.state.user)
+      this.props.updateUser(this.state.user)
       // .then(response => {
       //   if (this.props.user.error && this.props.user.error.length > 0) {
       //     this.props.messageShow(this.props.user.error)
@@ -61,7 +61,7 @@ class Profile extends React.Component {
       // })
     }
 		this.setState({
-			isEditing: !this.state.isEditing
+      isEditing: !this.state.isEditing,
 		});
 	};
 
@@ -212,4 +212,4 @@ function profileState(state) {
 	};
 }
 
-export default connect(profileState, { logout })(Profile);
+export default connect(profileState, { logout, updateUser })(Profile);

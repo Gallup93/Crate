@@ -30,45 +30,50 @@ export function setUser(token, user) {
 
 //Update a user
 export function updateUser(user) {
-  debugger
-  // return dispatch => {
+  return dispatch => {
     // dispatch({
     //   type: UPDATE_REQUEST,
     //   isLoading
     // })
+    console.log('here')
     return axios.post(routeApi, mutation({
       operation: 'userUpdate',
       variables: user,
       fields: ['id','name', 'email', 'address', 'bio', 'image', 'availabilityDate']
     }))
       .then(response => {
-        let error = ''
-        // console.log(response)
-        if (response.data.errors && response.data.errors.length > 0) {
-          error = response.data.errors[0].message
-        }
-        else if (response.statusText === 'OK') {
-          // const token = response.data.data.userDetails.token
+      //   let error = ''
+        console.log(response)
+      //   if (response.data.errors && response.data.errors.length > 0) {
+      //     error = response.data.errors[0].message
+      //   }
+      //   else if (response.statusText === 'OK') {
+      //     // const token = response.data.data.userDetails.token
           const user = response.data.data.userUpdate
-          console.log(response)
-          // dispatch(setUser(token, user))
-          return {type: SET_UPDATED_USER, user}
-          // loginSetUserLocalStorageAndCookie(token, user)
-      }})
+          console.log(user)
+      //     // dispatch(setUser(token, user))
+      //     return {type: SET_UPDATED_USER, user}
+      //     // loginSetUserLocalStorageAndCookie(token, user)
+          const token = window.localStorage.getItem('token')
+          console.log(token)
+          // return {type: SET_USER, user}
+          dispatch(setUser(token, user))
+          
+      // }})
       //   dispatch({
       //     type: LOGIN_RESPONSE,
       //     error
       //   })
-      // })
-      .catch(error => {
-        dispatch({
-          type: LOGIN_RESPONSE,
-          error: 'Please try again'
-        })
+        
       })
-  }
-// }
-
+      // .catch(error => {
+      //   dispatch({
+      //     type: LOGIN_RESPONSE,
+      //     error: 'Please try again'
+      //   })
+      
+    }
+ }
 // Login a user using credentials
 export function login(userCredentials, isLoading = true) {
   return dispatch => {
@@ -90,7 +95,7 @@ export function login(userCredentials, isLoading = true) {
         } else if (response.data.data.userLogin.token !== '') {
           const token = response.data.data.userLogin.token
           const user = response.data.data.userLogin.user
-          console.log(response)
+          console.log(user)
           dispatch(setUser(token, user))
 
           loginSetUserLocalStorageAndCookie(token, user)
