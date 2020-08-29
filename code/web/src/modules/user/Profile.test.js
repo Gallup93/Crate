@@ -7,7 +7,6 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux'
 import Profile from './Profile'
 
-
 describe('Profile', () => {
   const store = createStore(() => ({
     user: {
@@ -20,6 +19,7 @@ describe('Profile', () => {
       isAuthenticated: true,
       isLoading: false
     },
+    updateUser: jest.fn(),
     logout: jest.fn(),
     match: {},
     staticContext: undefined,
@@ -60,7 +60,7 @@ describe('Profile', () => {
       </BrowserRouter>
 
     )
-    const email = getByText('Email: billwilke2@gmail.com')
+    const email = getByText('billwilke2@gmail.com', { exact: false })
     
     expect(email).toBeInTheDocument()
   })
@@ -133,6 +133,7 @@ describe('Profile', () => {
     const submitButton = getByRole('button', { name: 'Submit' })
     expect(submitButton).toBeInTheDocument()
   })
+
   it('Should render a 5 inputs after the Edit button is clicked', () => {
     const { getByRole, getAllByRole, getByText } = render(
       <BrowserRouter>
@@ -147,7 +148,7 @@ describe('Profile', () => {
     const input = getAllByRole('textbox')
     const dateInput = getByText('Availability Date')
     const imageInput = getByText('Image URL')
-    expect(input).toHaveLength(3)
+    expect(input).toHaveLength(4)
     expect(dateInput).toBeInTheDocument()
     expect(imageInput).toBeInTheDocument()
   })

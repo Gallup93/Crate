@@ -11,8 +11,6 @@ export const LOGIN_REQUEST = 'AUTH/LOGIN_REQUEST'
 export const LOGIN_RESPONSE = 'AUTH/LOGIN_RESPONSE'
 export const SET_USER = 'AUTH/SET_USER'
 export const SET_UPDATED_USER = 'AUTH/SET_UPDATED_USER'
-// export const UPDATE_REQUEST = 'AUTH/UPDATE_REQUEST'
-// export const UPDATE_RESPONSE = 'AUTH/UPDATE_RESPONSE'
 export const LOGOUT = 'AUTH/LOGOUT'
 
 // Actions
@@ -24,26 +22,21 @@ export function setUser(token, user) {
   } else {
     delete axios.defaults.headers.common['Authorization'];
   }
-
   return { type: SET_USER, user }
 }
 
 //Update a user
 export function updateUser(user) {
   return dispatch => {
-    console.log('here')
     return axios.post(routeApi, mutation({
       operation: 'userUpdate',
       variables: user,
       fields: ['id','name', 'email', 'address', 'bio', 'image', 'availabilityDate']
     }))
       .then(response => {
-        console.log(response)
-          const user = response.data.data.userUpdate
-          console.log(user)
-          const token = window.localStorage.getItem('token')
-          console.log(token)
-          dispatch(setUser(token, user))
+        const user = response.data.data.userUpdate
+        const token = window.localStorage.getItem('token')
+        dispatch(setUser(token, user))
       })
     }
  }

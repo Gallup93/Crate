@@ -37,24 +37,6 @@ describe('actions', () => {
     expect(mockDispatch).toHaveBeenCalledWith(expectedAction)
   })
 
-  // it('should set an error', () => {
-  //   const userCredentials = {
-  //     email: 'billwilke2@gmail.com',
-  //     password: 'password'
-  //   }
-  //   const mockDispatch = jest.fn()
-  //   const expectedFirstAction = {
-  //     type: 'AUTH/LOGIN_RESPONSE',
-  //     isLoading: false
-  //   }
-
-  //   expectedFirstAction.mockResolvedValueOnce('Pl')
-
-  //   const thunk = login(userCredentials, false)
-  //   thunk(mockDispatch)
-  //   expect(mockDispatch).toHaveBeenCalledWith(expectedAction)
-  // })
-
   it('should allow a user to log out', () => {
     const expectedAction = {
       type: 'AUTH/LOGOUT' 
