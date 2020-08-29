@@ -10,6 +10,9 @@ import { routeApi } from '../../../setup/routes'
 export const LOGIN_REQUEST = 'AUTH/LOGIN_REQUEST'
 export const LOGIN_RESPONSE = 'AUTH/LOGIN_RESPONSE'
 export const SET_USER = 'AUTH/SET_USER'
+export const SET_UPDATED_USER = 'AUTH/SET_UPDATED_USER'
+// export const UPDATE_REQUEST = 'AUTH/UPDATE_REQUEST'
+// export const UPDATE_RESPONSE = 'AUTH/UPDATE_RESPONSE'
 export const LOGOUT = 'AUTH/LOGOUT'
 
 // Actions
@@ -25,6 +28,26 @@ export function setUser(token, user) {
   return { type: SET_USER, user }
 }
 
+//Update a user
+export function updateUser(user) {
+  return dispatch => {
+    console.log('here')
+    return axios.post(routeApi, mutation({
+      operation: 'userUpdate',
+      variables: user,
+      fields: ['id','name', 'email', 'address', 'bio', 'image', 'availabilityDate']
+    }))
+      .then(response => {
+        console.log(response)
+          const user = response.data.data.userUpdate
+          console.log(user)
+          const token = window.localStorage.getItem('token')
+          console.log(token)
+          dispatch(setUser(token, user))
+      })
+    }
+ }
+ 
 // Login a user using credentials
 export function login(userCredentials, isLoading = true) {
   return dispatch => {
@@ -36,7 +59,7 @@ export function login(userCredentials, isLoading = true) {
     return axios.post(routeApi, query({
       operation: 'userLogin',
       variables: userCredentials,
-      fields: ['user {name, email, role}', 'token']
+      fields: ['user {name, email, address, bio, image, availabilityDate, role, id}', 'token']
     }))
       .then(response => {
         let error = ''
@@ -46,7 +69,7 @@ export function login(userCredentials, isLoading = true) {
         } else if (response.data.data.userLogin.token !== '') {
           const token = response.data.data.userLogin.token
           const user = response.data.data.userLogin.user
-
+          console.log(user)
           dispatch(setUser(token, user))
 
           loginSetUserLocalStorageAndCookie(token, user)

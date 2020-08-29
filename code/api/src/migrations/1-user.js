@@ -1,3 +1,7 @@
+
+// Add up migration for new attributes
+// [image_link(string), description(string), shipping_address(string),
+// (something to track availability date(s?) for receiving orders)]
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('users', {
@@ -29,6 +33,9 @@ module.exports = {
       }
     });
   },
+  // Add down migration for newly added attributes
+  // [image_link(string), description(string), shipping_address(string),
+  // (something to track availability date(s?) for receiving orders)]
   down: (queryInterface, Sequelize) => {
     return queryInterface.dropTable('users');
   }

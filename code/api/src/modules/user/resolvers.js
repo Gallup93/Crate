@@ -8,7 +8,10 @@ import params from '../../config/params'
 import models from '../../setup/models'
 
 // Create
-export async function create(parentValue, { name, email, password }) {
+// Add new attributes here for user profile page improvemnts (see issue #35)
+// [image_link, description, shipping_address,
+// (something to track availability date(s?) for receiving orders)]
+export async function create(parentValue, { name, email, password, address, bio, availabilityDate, image }) {
   // Users exists with same email check
   const user = await models.User.findOne({ where: { email } })
 
@@ -19,7 +22,10 @@ export async function create(parentValue, { name, email, password }) {
     return await models.User.create({
       name,
       email,
-      password: passwordHashed
+      password: passwordHashed,
+      address,
+      bio,
+      availabilityDate
     })
   } else {
     // User exists
@@ -27,7 +33,25 @@ export async function create(parentValue, { name, email, password }) {
   }
 }
 
-export async function login(parentValue, { email, password }) {
+
+  // update
+  export async function update(parentValue, { id, name, email, address, image, bio, availabilityDate}) {
+  await models.User.update(
+    {
+      name,
+      email,
+      address,
+      image,
+      bio,
+      availabilityDate
+    },
+    { where: { id } }
+  );
+  return getById(parentValue, { id })
+}
+
+  // login
+  export async function login(parentValue, { email, password }) {
   const user = await models.User.findOne({ where: { email } })
 
   if (!user) {
@@ -47,7 +71,11 @@ export async function login(parentValue, { email, password }) {
         id: userDetails.id,
         name: userDetails.name,
         email: userDetails.email,
-        role: userDetails.role
+        role: userDetails.role,
+        address: userDetails.address,
+        bio: userDetails.bio,
+        availabilityDate: userDetails.availabilityDate,
+        image: userDetails.image
       }
 
       return {

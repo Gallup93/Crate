@@ -1,6 +1,6 @@
 // App Imports
 import { isEmpty } from '../../../setup/helpers'
-import { SET_USER, LOGIN_REQUEST, LOGIN_RESPONSE, LOGOUT } from './actions'
+import { SET_USER, LOGIN_REQUEST, LOGIN_RESPONSE, LOGOUT, SET_UPDATED_USER } from './actions'
 
 // Initial State
 export const userInitialState = {
@@ -20,7 +20,7 @@ export default (state = userInitialState, action) => {
         isAuthenticated: !isEmpty(action.user),
         details: action.user,
       }
-
+      
     case LOGIN_REQUEST:
       return {
         ...state,

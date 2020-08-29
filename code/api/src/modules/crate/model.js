@@ -10,6 +10,7 @@ module.exports = function(sequelize, DataTypes) {
     }
   })
 
+  // Add new association 'hasMany(models.Product)'
   Crate.associate = function(models) {
     Crate.hasMany(models.Subscription)
   }

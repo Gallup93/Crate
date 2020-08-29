@@ -1,3 +1,5 @@
+
+// Add new up migration for attribute 'returned'(boolean)
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('products', {
@@ -35,6 +37,7 @@ module.exports = {
       }
     });
   },
+  // Add new down migration for attribute 'returned'(boolean)
   down: (queryInterface, Sequelize) => {
     return queryInterface.dropTable('products');
   }
