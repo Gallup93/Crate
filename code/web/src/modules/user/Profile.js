@@ -29,9 +29,7 @@ class Profile extends React.Component {
 				email: this.props.user.details.email,
 				address: this.props.user.details.address,
 				bio: this.props.user.details.bio,
-				// "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc maximus, nulla ut commodo sagittis, sapien dui mattis dui, non pulvinar lorem felis nec erat",
 				image: this.props.user.details.image,
-				// "https://www.pngitem.com/pimgs/m/30-307416_profile-icon-png-image-free-download-searchpng-employee.png",
 				availabilityDate: this.props.user.details.availabilityDate,
 			},
 		};
